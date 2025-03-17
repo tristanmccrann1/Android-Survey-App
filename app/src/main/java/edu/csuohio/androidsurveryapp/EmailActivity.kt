@@ -9,12 +9,15 @@ import androidx.appcompat.app.AppCompatActivity
 import java.io.File
 import androidx.core.content.FileProvider
 
-
 class EmailActivity : AppCompatActivity() {
     private var pdfPath: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_email)
+
+        // Retrieve the PDF path from the intent
+        pdfPath = intent.getStringExtra("pdfPath")
     }
 
     fun sendEmail(view: View) {
@@ -47,4 +50,9 @@ class EmailActivity : AppCompatActivity() {
         }
     }
 
+    fun goBackToMain(view: View) {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
 }

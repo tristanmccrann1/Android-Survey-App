@@ -6,25 +6,42 @@
     android:padding="16dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Survey Summary"
         android:textSize="18sp"
         android:textStyle="bold"/>
 
+    <TextView
+        android:id="@+id/tvSectionAverages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Section Averages:"
+        android:background="#E8E8E8"
+        android:padding="8dp"/>
+
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
         android:layout_width="match_parent"
-        android:layout_height="400dp"/>
+        android:layout_height="350dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="This chart shows your responses to each question (PT = Peer Teacher, PL = Peer Learner)"/>
 
     <Button
         android:id="@+id/btnSendEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Send Email"
+        android:text="Send Email Report"
         android:onClick="sendEmail"
         android:layout_marginTop="20dp"/>
-
 
     <Button
         android:id="@+id/btnBack"
@@ -33,6 +50,5 @@
         android:text="Back to Dashboard"
         android:onClick="goBackToMain"
         android:layout_marginTop="10dp"/>
-
 
 </LinearLayout>

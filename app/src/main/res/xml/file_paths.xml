@@ -2,5 +2,8 @@
 <paths>
     <external-files-path
         name="pdfs"
-        path="Download/" />
+        path="Documents/" />
+    <external-files-path
+        name="external_files"
+        path="." />
 </paths>
