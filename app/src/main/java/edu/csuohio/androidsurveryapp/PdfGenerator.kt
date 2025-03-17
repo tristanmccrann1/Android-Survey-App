@@ -1,6 +1,7 @@
 package edu.csuohio.androidsurveryapp
 
 import android.content.Context
+import android.graphics.Paint
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
 import android.util.Log
@@ -12,40 +13,31 @@ import java.util.Date
 import java.util.Locale
 
 object PdfGenerator {
+    // PDF page constants
+    private const val PAGE_WIDTH = 595
+    private const val PAGE_HEIGHT = 842
+    private const val MARGIN_LEFT = 50f
+    private const val MARGIN_TOP = 50f
+    private const val LINE_HEIGHT = 25f
+
+    // PDF formatting
+    private val titlePaint = Paint().apply {
+        textSize = 18f
+        isFakeBoldText = true
+    }
+
+    private val sectionPaint = Paint().apply {
+        textSize = 16f
+        isFakeBoldText = true
+        color = android.graphics.Color.rgb(0, 0, 128) // Navy blue
+    }
+
+    private val regularPaint = Paint().apply {
+        textSize = 14f
+    }
+
     fun generatePdf(context: Context, responses: Map<String, String>): File? {
         val document = PdfDocument()
-        val pageInfo = PdfDocument.PageInfo.Builder(595, 842, 1).create()
-        val page = document.startPage(pageInfo)
-
-        val canvas = page.canvas
-        val paint = android.graphics.Paint()
-
-        // Title style
-        val titlePaint = android.graphics.Paint().apply {
-            textSize = 18f
-            isFakeBoldText = true
-        }
-
-        // Section header style
-        val sectionPaint = android.graphics.Paint().apply {
-            textSize = 16f
-            isFakeBoldText = true
-            color = android.graphics.Color.rgb(0, 0, 128) // Navy blue
-        }
-
-        // Standard text style
-        paint.textSize = 14f
-
-        var yPos = 50
-
-        // Add title and date
-        val dateFormat = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault())
-        val currentDate = dateFormat.format(Date())
-
-        canvas.drawText("Survey Response Summary", 50f, yPos.toFloat(), titlePaint)
-        yPos += 25
-        canvas.drawText("Date: $currentDate", 50f, yPos.toFloat(), paint)
-        yPos += 40
 
         // Calculate averages for each section
         var peerTeacherTotal = 0f
@@ -69,27 +61,6 @@ object PdfGenerator {
         val overallAvg = if (peerTeacherCount + peerLearnerCount > 0)
             (peerTeacherTotal + peerLearnerTotal) / (peerTeacherCount + peerLearnerCount) else 0f
 
-        // Display section averages
-        canvas.drawText("Survey Results Summary:", 50f, yPos.toFloat(), sectionPaint)
-        yPos += 30
-        canvas.drawText("Peer Teacher Section Average: ${String.format("%.2f", peerTeacherAvg)}",
-            70f, yPos.toFloat(), paint)
-        yPos += 25
-        canvas.drawText("Peer Learner Section Average: ${String.format("%.2f", peerLearnerAvg)}",
-            70f, yPos.toFloat(), paint)
-        yPos += 25
-        canvas.drawText("Overall Average: ${String.format("%.2f", overallAvg)}",
-            70f, yPos.toFloat(), paint)
-        yPos += 40
-
-        // Display individual responses
-        canvas.drawText("Individual Question Responses:", 50f, yPos.toFloat(), sectionPaint)
-        yPos += 30
-
-        // Peer Teacher Section
-        canvas.drawText("Peer Teacher Questions:", 70f, yPos.toFloat(), paint)
-        yPos += 25
-
         // Sort responses to ensure they're in order
         val sortedResponses = responses.entries.sortedBy {
             val questionParts = it.key.split("Q")
@@ -100,36 +71,128 @@ object PdfGenerator {
             if (sectionName.contains("Teacher")) 0 else 1 * 1000 + questionNumber
         }
 
+        // Start first page
+        var pageInfo = PdfDocument.PageInfo.Builder(PAGE_WIDTH, PAGE_HEIGHT, 1).create()
+        var page = document.startPage(pageInfo)
+        var canvas = page.canvas
+        var yPosition = MARGIN_TOP
+
+        // Add title and date
+        val dateFormat = SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault())
+        val currentDate = dateFormat.format(Date())
+
+        canvas.drawText("Survey Response Summary", MARGIN_LEFT, yPosition, titlePaint)
+        yPosition += LINE_HEIGHT
+        canvas.drawText("Date: $currentDate", MARGIN_LEFT, yPosition, regularPaint)
+        yPosition += LINE_HEIGHT * 1.5f
+
+        // Display section averages
+        canvas.drawText("Survey Results Summary:", MARGIN_LEFT, yPosition, sectionPaint)
+        yPosition += LINE_HEIGHT
+        canvas.drawText("Peer Teacher Section Average: ${String.format("%.2f", peerTeacherAvg)}",
+            MARGIN_LEFT + 20, yPosition, regularPaint)
+        yPosition += LINE_HEIGHT
+        canvas.drawText("Peer Learner Section Average: ${String.format("%.2f", peerLearnerAvg)}",
+            MARGIN_LEFT + 20, yPosition, regularPaint)
+        yPosition += LINE_HEIGHT
+        canvas.drawText("Overall Average: ${String.format("%.2f", overallAvg)}",
+            MARGIN_LEFT + 20, yPosition, regularPaint)
+        yPosition += LINE_HEIGHT * 1.5f
+
+        // Display individual responses
+        canvas.drawText("Individual Question Responses:", MARGIN_LEFT, yPosition, sectionPaint)
+        yPosition += LINE_HEIGHT * 1.5f
+
+        // Peer Teacher Section
+        canvas.drawText("Peer Teacher Questions:", MARGIN_LEFT + 20, yPosition, regularPaint)
+        yPosition += LINE_HEIGHT
+
+        // Process each response
         for ((question, answer) in sortedResponses) {
+            // Check if we need a new page (near bottom of page)
+            if (yPosition > PAGE_HEIGHT - 100) {
+                // Finish current page
+                document.finishPage(page)
+
+                // Start a new page
+                pageInfo = PdfDocument.PageInfo.Builder(PAGE_WIDTH, PAGE_HEIGHT, document.pages.size + 1).create()
+                page = document.startPage(pageInfo)
+                canvas = page.canvas
+                yPosition = MARGIN_TOP
+
+                // Add continuation header
+                canvas.drawText("Survey Response Summary (continued)", MARGIN_LEFT, yPosition, titlePaint)
+                yPosition += LINE_HEIGHT * 1.5f
+            }
+
             if (question.contains("Peer Teacher")) {
                 val questionNumber = question.replace("Peer Teacher Q", "").toIntOrNull() ?: 0
                 val questionText = getPeerTeacherQuestionText(questionNumber)
-                canvas.drawText("Q$questionNumber: $questionText", 90f, yPos.toFloat(), paint)
-                yPos += 20
+
+                // Write the question
+                canvas.drawText("Q$questionNumber: $questionText", MARGIN_LEFT + 40, yPosition, regularPaint)
+                yPosition += LINE_HEIGHT
+
+                // Write the response
                 canvas.drawText("Response: $answer - ${getLikertScaleText(answer.toIntOrNull() ?: 0)}",
-                    110f, yPos.toFloat(), paint)
-                yPos += 30
-            }
-        }
+                    MARGIN_LEFT + 60, yPosition, regularPaint)
+                yPosition += LINE_HEIGHT * 1.5f
+            } else if (question.contains("Peer Learner") && !question.contains("Peer Teacher")) {
+                // If this is the first peer learner question and we're transitioning sections
+                if (question.contains("Q1")) {
+                    // Add a section header for peer learner questions
+                    // Check if we need a new page for the section header
+                    if (yPosition > PAGE_HEIGHT - 120) {
+                        // Finish current page
+                        document.finishPage(page)
 
-        yPos += 10
+                        // Start a new page
+                        pageInfo = PdfDocument.PageInfo.Builder(PAGE_WIDTH, PAGE_HEIGHT, document.pages.size + 1).create()
+                        page = document.startPage(pageInfo)
+                        canvas = page.canvas
+                        yPosition = MARGIN_TOP
 
-        // Peer Learner Section
-        canvas.drawText("Peer Learner Questions:", 70f, yPos.toFloat(), paint)
-        yPos += 25
+                        // Add continuation header
+                        canvas.drawText("Survey Response Summary (continued)", MARGIN_LEFT, yPosition, titlePaint)
+                        yPosition += LINE_HEIGHT * 1.5f
+                    }
 
-        for ((question, answer) in sortedResponses) {
-            if (question.contains("Peer Learner")) {
+                    // Add the section header
+                    canvas.drawText("Peer Learner Questions:", MARGIN_LEFT + 20, yPosition, regularPaint)
+                    yPosition += LINE_HEIGHT
+                }
+
+                // Check if we need a new page for this question
+                if (yPosition > PAGE_HEIGHT - 100) {
+                    // Finish current page
+                    document.finishPage(page)
+
+                    // Start a new page
+                    pageInfo = PdfDocument.PageInfo.Builder(PAGE_WIDTH, PAGE_HEIGHT, document.pages.size + 1).create()
+                    page = document.startPage(pageInfo)
+                    canvas = page.canvas
+                    yPosition = MARGIN_TOP
+
+                    // Add continuation header
+                    canvas.drawText("Survey Response Summary (continued)", MARGIN_LEFT, yPosition, titlePaint)
+                    yPosition += LINE_HEIGHT * 1.5f
+                }
+
                 val questionNumber = question.replace("Peer Learner Q", "").toIntOrNull() ?: 0
                 val questionText = getPeerLearnerQuestionText(questionNumber)
-                canvas.drawText("Q$questionNumber: $questionText", 90f, yPos.toFloat(), paint)
-                yPos += 20
+
+                // Write the question
+                canvas.drawText("Q$questionNumber: $questionText", MARGIN_LEFT + 40, yPosition, regularPaint)
+                yPosition += LINE_HEIGHT
+
+                // Write the response
                 canvas.drawText("Response: $answer - ${getLikertScaleText(answer.toIntOrNull() ?: 0)}",
-                    110f, yPos.toFloat(), paint)
-                yPos += 30
+                    MARGIN_LEFT + 60, yPosition, regularPaint)
+                yPosition += LINE_HEIGHT * 1.5f
             }
         }
 
+        // Finish the last page
         document.finishPage(page)
 
         // Create file to save the PDF
