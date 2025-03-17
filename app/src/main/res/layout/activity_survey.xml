@@ -18,16 +18,27 @@
             android:textStyle="bold"
             android:paddingBottom="10dp"/>
 
-        <!-- Peer Teacher Questions -->
+        <!-- Peer Teacher Questions Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Peer Teacher Questions"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingTop="10dp"
+            android:paddingBottom="5dp"/>
+
+        <!-- Question 1 -->
         <RadioGroup
             android:id="@+id/q1Group"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="1. Serving as a peer teacher increased my self-confidence"/>
+                android:text="1. Serving as a peer teacher increased my self-confidence in this course"/>
 
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
@@ -36,9 +47,16 @@
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
         </RadioGroup>
 
-        <!-- Repeat for all 16 questions -->
-        <RadioGroup android:id="@+id/q2Group" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="2. Serving as a peer teacher improved my course performance"/>
+        <!-- Question 2 -->
+        <RadioGroup
+            android:id="@+id/q2Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. Serving as a peer teacher improved my course performance"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
@@ -46,8 +64,16 @@
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
         </RadioGroup>
 
-        <RadioGroup android:id="@+id/q3Group" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="3. Serving as a peer teacher improved my communication skills"/>
+        <!-- Question 3 -->
+        <RadioGroup
+            android:id="@+id/q3Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3. Serving as a peer teacher improved my communication and active listening skills"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
@@ -55,8 +81,16 @@
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
         </RadioGroup>
 
-        <RadioGroup android:id="@+id/q4Group" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="4. Serving as a peer teacher improved my communication skills"/>
+        <!-- Question 4 -->
+        <RadioGroup
+            android:id="@+id/q4Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4. I had the opportunity to consolidate my own knowledge through peer teaching"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
@@ -64,8 +98,16 @@
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
         </RadioGroup>
 
-        <RadioGroup android:id="@+id/q5Group" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="5. Serving as a peer teacher improved my communication skills"/>
+        <!-- Question 5 -->
+        <RadioGroup
+            android:id="@+id/q5Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5. I have a better understanding of teamwork and understanding roles within the team"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
@@ -73,8 +115,16 @@
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
         </RadioGroup>
 
-        <RadioGroup android:id="@+id/q6Group" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="6. Serving as a peer teacher improved my communication skills"/>
+        <!-- Question 6 -->
+        <RadioGroup
+            android:id="@+id/q6Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="6. I gained many benefits from peer teaching experience and am willing to repeat it"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
@@ -82,8 +132,16 @@
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
         </RadioGroup>
 
-        <RadioGroup android:id="@+id/q7Group" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="7. Serving as a peer teacher improved my communication skills"/>
+        <!-- Question 7 -->
+        <RadioGroup
+            android:id="@+id/q7Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="7. The students were actively engaged during the peer teaching sessions"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
@@ -91,8 +149,16 @@
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
         </RadioGroup>
 
-        <RadioGroup android:id="@+id/q8Group" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="8. Serving as a peer teacher improved my communication skills"/>
+        <!-- Question 8 -->
+        <RadioGroup
+            android:id="@+id/q8Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="8. I think the students benefited from peer teaching experience"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
@@ -100,8 +166,26 @@
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
         </RadioGroup>
 
-        <RadioGroup android:id="@+id/q9Group" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="9. Serving as a peer teacher improved my communication skills"/>
+        <!-- Peer Learner Questions Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Peer Learner Questions"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingTop="20dp"
+            android:paddingBottom="5dp"/>
+
+        <!-- Question 9 -->
+        <RadioGroup
+            android:id="@+id/q9Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1. The content of peer teaching sessions was appropriate for the student's level"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
@@ -109,8 +193,16 @@
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
         </RadioGroup>
 
-        <RadioGroup android:id="@+id/q10Group" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="10. Serving as a peer teacher improved my communication skills"/>
+        <!-- Question 10 -->
+        <RadioGroup
+            android:id="@+id/q10Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2. The Peer teacher's methods were helpful"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
@@ -118,8 +210,16 @@
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
         </RadioGroup>
 
-        <RadioGroup android:id="@+id/q11Group" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="11. Serving as a peer teacher improved my communication skills"/>
+        <!-- Question 11 -->
+        <RadioGroup
+            android:id="@+id/q11Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3. I understood the subject better after the peer teaching sessions"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
@@ -127,8 +227,16 @@
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
         </RadioGroup>
 
-        <RadioGroup android:id="@+id/q12Group" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="12. Serving as a peer teacher improved my communication skills"/>
+        <!-- Question 12 -->
+        <RadioGroup
+            android:id="@+id/q12Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="4. I understood the content better when the peer teachers explained it"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
@@ -136,6 +244,73 @@
             <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
         </RadioGroup>
 
+        <!-- Question 13 -->
+        <RadioGroup
+            android:id="@+id/q13Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="5. I am more willing to engage in sessions taught by peers compared to faculty teachers"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Agree" android:tag="4"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
+        </RadioGroup>
+
+        <!-- Question 14 -->
+        <RadioGroup
+            android:id="@+id/q14Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="6. The peer teaching sessions were better than I had expected"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Agree" android:tag="4"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
+        </RadioGroup>
+
+        <!-- Question 15 -->
+        <RadioGroup
+            android:id="@+id/q15Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="7. The peer teachers were well-prepared and knowledgeable about the topic"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Agree" android:tag="4"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
+        </RadioGroup>
+
+        <!-- Question 16 -->
+        <RadioGroup
+            android:id="@+id/q16Group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="8. We should have more peer teaching sessions"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Disagree" android:tag="1"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Disagree" android:tag="2"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Neutral" android:tag="3"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Agree" android:tag="4"/>
+            <RadioButton android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Strongly Agree" android:tag="5"/>
+        </RadioGroup>
 
         <!-- Submit Button -->
         <Button
@@ -153,7 +328,6 @@
             android:text="Back to Dashboard"
             android:onClick="goBackToMain"
             android:layout_marginTop="10dp"/>
-
 
     </LinearLayout>
 </ScrollView>
